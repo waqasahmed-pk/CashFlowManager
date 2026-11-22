@@ -21,7 +21,6 @@
     };
   </script>
   <style>
-    /* Custom Glassmorphism & Mesh Background System */
     :root {
       --glass-bg: rgba(255, 255, 255, 0.68);
       --glass-bg-elevated: rgba(255, 255, 255, 0.85);
@@ -47,7 +46,6 @@
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* Ambient Gradient Mesh */
     .ambient-bg {
       position: fixed;
       inset: 0;
@@ -70,7 +68,6 @@
         radial-gradient(at 85% 78%, rgba(244, 63, 94, 0.12) 0px, transparent 48%);
     }
 
-    /* Frosted Glass Panel */
     .glass-panel {
       background: var(--glass-bg);
       backdrop-filter: blur(16px);
@@ -103,7 +100,6 @@
       box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.18);
     }
 
-    /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 6px;
       height: 6px;
@@ -119,7 +115,6 @@
       background: rgba(148, 163, 184, 0.55);
     }
 
-    /* Smooth Toast Animation */
     @keyframes slideUpFade {
       from { opacity: 0; transform: translateY(14px); }
       to { opacity: 1; transform: translateY(0); }
@@ -130,14 +125,11 @@
   </style>
 </head>
 <body class="text-slate-800 dark:text-slate-100 antialiased selection:bg-sky-500/30">
-  <!-- Ambient Background -->
   <div class="ambient-bg" aria-hidden="true"></div>
 
-  <!-- Main Container -->
   <div class="max-w-6xl mx-auto px-4 sm:px-6 py-5 sm:py-8 pb-20">
     <!-- Top Header -->
     <header class="glass-panel rounded-2xl p-4 sm:px-6 sm:py-4 mb-6 flex flex-wrap items-center justify-between gap-4">
-      <!-- Brand: WA Monogram + Inline Editable Title -->
       <div class="flex items-center gap-3.5 min-w-0 flex-1">
         <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500 via-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm tracking-wider shadow-lg shadow-indigo-500/25 shrink-0 select-none">
           WA
@@ -155,13 +147,11 @@
               <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
             </svg>
           </div>
-          <p class="text-xs text-slate-500 dark:text-slate-400 truncate">Multi-Wallet Finance, Udhaar &amp; Reminders</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400 truncate">Multi-Wallet Finance, Separate Udhaar &amp; Reminders</p>
         </div>
       </div>
 
-      <!-- Header Controls: Backup Export, Import, Theme Toggle -->
       <div class="flex items-center gap-2 sm:gap-2.5 shrink-0">
-        <!-- Export JSON -->
         <button id="exportBtn" type="button" title="Export JSON Backup"
           class="glass-input hover:bg-white/80 dark:hover:bg-slate-800/80 text-xs sm:text-sm font-medium px-3 py-2 rounded-xl flex items-center gap-1.5 transition active:scale-95">
           <svg class="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -170,7 +160,6 @@
           <span class="hidden sm:inline">Export</span>
         </button>
 
-        <!-- Import JSON -->
         <button id="importBtn" type="button" title="Import JSON Restore"
           class="glass-input hover:bg-white/80 dark:hover:bg-slate-800/80 text-xs sm:text-sm font-medium px-3 py-2 rounded-xl flex items-center gap-1.5 transition active:scale-95">
           <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -180,14 +169,11 @@
         </button>
         <input id="importFileInput" type="file" accept="application/json,.json" class="hidden" />
 
-        <!-- Dark / Light Theme Toggle -->
         <button id="themeToggleBtn" type="button" aria-label="Toggle color theme" title="Toggle Dark / Light Mode"
           class="glass-input hover:bg-white/80 dark:hover:bg-slate-800/80 p-2 rounded-xl transition active:scale-95">
-          <!-- Sun Icon (shown in dark mode) -->
           <svg id="sunIcon" class="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
           </svg>
-          <!-- Moon Icon (shown in light mode) -->
           <svg id="moonIcon" class="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
           </svg>
@@ -217,110 +203,17 @@
     <!-- TAB 1: FINANCE & UDHAAR LEDGER                                        -->
     <!-- ===================================================================== -->
     <main id="financeTab" class="space-y-6">
-      <!-- 1. Hero Combined Net Balance & Summary -->
-      <section class="glass-panel rounded-3xl p-5 sm:p-7 relative overflow-hidden">
-        <div class="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-sky-500/10 blur-2xl pointer-events-none"></div>
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-          <div>
-            <span class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400 bg-sky-500/10 px-3 py-1 rounded-full mb-2">
-              Combined Net Balance
-            </span>
-            <h2 id="netBalanceDisplay" class="text-3xl sm:text-4xl font-bold tracking-tight">
-              PKR 0
-            </h2>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
-              Live sum across Cash, JazzCash, EasyPaisa &amp; UBL wallets
-            </p>
-          </div>
-
-          <div class="grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-4 shrink-0">
-            <div class="glass-input rounded-2xl p-3.5 sm:px-5">
-              <div class="flex items-center gap-2 text-xs font-medium text-emerald-600 dark:text-emerald-400 mb-1">
-                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                Total Income
-              </div>
-              <div id="totalIncomeDisplay" class="text-base sm:text-lg font-bold text-slate-800 dark:text-white">
-                PKR 0
-              </div>
-            </div>
-            <div class="glass-input rounded-2xl p-3.5 sm:px-5">
-              <div class="flex items-center gap-2 text-xs font-medium text-rose-600 dark:text-rose-400 mb-1">
-                <span class="w-2 h-2 rounded-full bg-rose-500"></span>
-                Total Expenses
-              </div>
-              <div id="totalExpenseDisplay" class="text-base sm:text-lg font-bold text-slate-800 dark:text-white">
-                PKR 0
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 2. Four Multi-Account Wallet Cards -->
-      <section aria-label="Account Wallets" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <!-- Cash -->
-        <div class="glass-panel glass-panel-hover rounded-2xl p-4 sm:p-5 border-l-4 border-l-emerald-500">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Cash</span>
-            <div class="w-8 h-8 rounded-xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-            </div>
-          </div>
-          <div id="walletBalance_Cash" class="text-xl font-bold tracking-tight">PKR 0</div>
-          <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Physical Hand Cash</div>
-        </div>
-
-        <!-- JazzCash -->
-        <div class="glass-panel glass-panel-hover rounded-2xl p-4 sm:p-5 border-l-4 border-l-rose-500">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-semibold uppercase tracking-wider text-rose-600 dark:text-rose-400">JazzCash</span>
-            <div class="w-8 h-8 rounded-xl bg-rose-500/15 text-rose-600 dark:text-rose-400 flex items-center justify-center font-bold text-xs">
-              JC
-            </div>
-          </div>
-          <div id="walletBalance_JazzCash" class="text-xl font-bold tracking-tight">PKR 0</div>
-          <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Mobile Wallet</div>
-        </div>
-
-        <!-- EasyPaisa -->
-        <div class="glass-panel glass-panel-hover rounded-2xl p-4 sm:p-5 border-l-4 border-l-teal-500">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-semibold uppercase tracking-wider text-teal-600 dark:text-teal-400">EasyPaisa</span>
-            <div class="w-8 h-8 rounded-xl bg-teal-500/15 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold text-xs">
-              EP
-            </div>
-          </div>
-          <div id="walletBalance_EasyPaisa" class="text-xl font-bold tracking-tight">PKR 0</div>
-          <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Digital Account</div>
-        </div>
-
-        <!-- UBL -->
-        <div class="glass-panel glass-panel-hover rounded-2xl p-4 sm:p-5 border-l-4 border-l-sky-500">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400">UBL</span>
-            <div class="w-8 h-8 rounded-xl bg-sky-500/15 text-sky-600 dark:text-sky-400 flex items-center justify-center">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
-              </svg>
-            </div>
-          </div>
-          <div id="walletBalance_UBL" class="text-xl font-bold tracking-tight">PKR 0</div>
-          <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">United Bank Limited</div>
-        </div>
-      </section>
-
-      <!-- Sub-Navigation inside Finance Tab: Daily Transactions vs Udhaar Ledger -->
+      <!-- Sub-Navigation inside Finance Tab: Main Wallets vs Separate Loan & Credit Ledger -->
       <div class="flex flex-wrap items-center justify-between gap-3">
         <div class="glass-panel rounded-xl p-1 inline-flex gap-1">
           <button id="subTabTransactionsBtn" type="button"
             class="px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-sm">
-            Income &amp; Expenses
+            Main Wallets (Income &amp; Expenses)
           </button>
           <button id="subTabUdhaarBtn" type="button"
-            class="px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition text-slate-600 dark:text-slate-300 hover:bg-white/40 dark:hover:bg-slate-800/50">
-            Loan &amp; Credit (Udhaar)
+            class="px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition text-slate-600 dark:text-slate-300 hover:bg-white/40 dark:hover:bg-slate-800/50 flex items-center gap-1.5">
+            <span>Loan Given &amp; Credit Taken</span>
+            <span class="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-500">Separate</span>
           </button>
         </div>
 
@@ -348,7 +241,6 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Income Categories -->
           <div class="glass-input rounded-2xl p-4">
             <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-3">Income Categories</h4>
             <form id="addIncomeCatForm" class="flex gap-2 mb-3">
@@ -361,7 +253,6 @@
             <div id="incomeCategoryTags" class="flex flex-wrap gap-2"></div>
           </div>
 
-          <!-- Expense Categories -->
           <div class="glass-input rounded-2xl p-4">
             <h4 class="text-xs font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400 mb-3">Expense Categories</h4>
             <form id="addExpenseCatForm" class="flex gap-2 mb-3">
@@ -377,145 +268,249 @@
       </section>
 
       <!-- =================================================================== -->
-      <!-- SUB-VIEW A: INCOME & EXPENSE LOGGER + DAILY LOG                     -->
+      <!-- SUB-VIEW A: MAIN WALLETS (STRICTLY ISOLATED FROM LOAN & CREDIT)     -->
       <!-- =================================================================== -->
-      <div id="transactionsSubView" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <!-- Left Column: Add Transaction Form -->
-        <div class="lg:col-span-5">
-          <div class="glass-panel rounded-2xl p-5 sm:p-6 sticky top-6">
-            <h3 class="text-base font-bold mb-4">Record Transaction</h3>
+      <div id="transactionsSubView" class="space-y-6">
+        <!-- 1. Hero Combined Net Balance & Summary (Main Tab Only) -->
+        <section class="glass-panel rounded-3xl p-5 sm:p-7 relative overflow-hidden">
+          <div class="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-sky-500/10 blur-2xl pointer-events-none"></div>
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div>
+              <span class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400 bg-sky-500/10 px-3 py-1 rounded-full mb-2">
+                Main Wallets Net Balance
+              </span>
+              <h2 id="netBalanceDisplay" class="text-3xl sm:text-4xl font-bold tracking-tight">
+                PKR 0
+              </h2>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                Pure sum of Cash, JazzCash, EasyPaisa &amp; UBL (Loan &amp; Credit records kept separate)
+              </p>
+            </div>
 
-            <form id="transactionForm" class="space-y-4">
-              <!-- Income / Expense Pill Switch -->
-              <div class="grid grid-cols-2 gap-1.5 p-1 glass-input rounded-xl">
-                <button type="button" id="txTypeExpenseBtn"
-                  class="py-2 rounded-lg text-xs sm:text-sm font-semibold transition bg-rose-600 text-white shadow-sm">
-                  − Expense
-                </button>
-                <button type="button" id="txTypeIncomeBtn"
-                  class="py-2 rounded-lg text-xs sm:text-sm font-semibold transition text-slate-600 dark:text-slate-300">
-                  + Income
-                </button>
-              </div>
-              <input type="hidden" id="txTypeInput" value="expense" />
-
-              <!-- Wallet & Amount -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label for="txWalletInput" class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Wallet Account</label>
-                  <select id="txWalletInput" required class="glass-input w-full rounded-xl px-3 py-2.5 text-sm font-medium">
-                    <option value="Cash">Cash</option>
-                    <option value="JazzCash">JazzCash</option>
-                    <option value="EasyPaisa">EasyPaisa</option>
-                    <option value="UBL">UBL</option>
-                  </select>
+            <div class="grid grid-cols-2 gap-3 sm:gap-4 shrink-0">
+              <div class="glass-input rounded-2xl p-3.5 sm:px-5">
+                <div class="flex items-center gap-2 text-xs font-medium text-emerald-600 dark:text-emerald-400 mb-1">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                  Total Income
                 </div>
-                <div>
-                  <label for="txAmountInput" class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Amount (PKR)</label>
-                  <input id="txAmountInput" type="number" step="any" min="0.01" placeholder="0" required
-                    class="glass-input w-full rounded-xl px-3 py-2.5 text-sm font-semibold" />
+                <div id="totalIncomeDisplay" class="text-base sm:text-lg font-bold text-slate-800 dark:text-white">
+                  PKR 0
                 </div>
               </div>
+              <div class="glass-input rounded-2xl p-3.5 sm:px-5">
+                <div class="flex items-center gap-2 text-xs font-medium text-rose-600 dark:text-rose-400 mb-1">
+                  <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+                  Total Expenses
+                </div>
+                <div id="totalExpenseDisplay" class="text-base sm:text-lg font-bold text-slate-800 dark:text-white">
+                  PKR 0
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-              <!-- Date & Category -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <!-- 2. Four Multi-Account Wallet Cards -->
+        <section aria-label="Account Wallets" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="glass-panel glass-panel-hover rounded-2xl p-4 sm:p-5 border-l-4 border-l-emerald-500">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Cash</span>
+              <div class="w-8 h-8 rounded-xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+            </div>
+            <div id="walletBalance_Cash" class="text-xl font-bold tracking-tight">PKR 0</div>
+            <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Physical Hand Cash</div>
+          </div>
+
+          <div class="glass-panel glass-panel-hover rounded-2xl p-4 sm:p-5 border-l-4 border-l-rose-500">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-semibold uppercase tracking-wider text-rose-600 dark:text-rose-400">JazzCash</span>
+              <div class="w-8 h-8 rounded-xl bg-rose-500/15 text-rose-600 dark:text-rose-400 flex items-center justify-center font-bold text-xs">
+                JC
+              </div>
+            </div>
+            <div id="walletBalance_JazzCash" class="text-xl font-bold tracking-tight">PKR 0</div>
+            <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Mobile Wallet</div>
+          </div>
+
+          <div class="glass-panel glass-panel-hover rounded-2xl p-4 sm:p-5 border-l-4 border-l-teal-500">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-semibold uppercase tracking-wider text-teal-600 dark:text-teal-400">EasyPaisa</span>
+              <div class="w-8 h-8 rounded-xl bg-teal-500/15 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold text-xs">
+                EP
+              </div>
+            </div>
+            <div id="walletBalance_EasyPaisa" class="text-xl font-bold tracking-tight">PKR 0</div>
+            <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Digital Account</div>
+          </div>
+
+          <div class="glass-panel glass-panel-hover rounded-2xl p-4 sm:p-5 border-l-4 border-l-sky-500">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400">UBL</span>
+              <div class="w-8 h-8 rounded-xl bg-sky-500/15 text-sky-600 dark:text-sky-400 flex items-center justify-center">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+                </svg>
+              </div>
+            </div>
+            <div id="walletBalance_UBL" class="text-xl font-bold tracking-tight">PKR 0</div>
+            <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">United Bank Limited</div>
+          </div>
+        </section>
+
+        <!-- 3. Record Transaction Form & Daily Log -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-5">
+            <div class="glass-panel rounded-2xl p-5 sm:p-6 sticky top-6">
+              <h3 class="text-base font-bold mb-4">Record Transaction</h3>
+
+              <form id="transactionForm" class="space-y-4">
+                <div class="grid grid-cols-2 gap-1.5 p-1 glass-input rounded-xl">
+                  <button type="button" id="txTypeExpenseBtn"
+                    class="py-2 rounded-lg text-xs sm:text-sm font-semibold transition bg-rose-600 text-white shadow-sm">
+                    − Expense
+                  </button>
+                  <button type="button" id="txTypeIncomeBtn"
+                    class="py-2 rounded-lg text-xs sm:text-sm font-semibold transition text-slate-600 dark:text-slate-300">
+                    + Income
+                  </button>
+                </div>
+                <input type="hidden" id="txTypeInput" value="expense" />
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label for="txWalletInput" class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Wallet Account</label>
+                    <select id="txWalletInput" required class="glass-input w-full rounded-xl px-3 py-2.5 text-sm font-medium">
+                      <option value="Cash">Cash</option>
+                      <option value="JazzCash">JazzCash</option>
+                      <option value="EasyPaisa">EasyPaisa</option>
+                      <option value="UBL">UBL</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="txAmountInput" class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Amount (PKR)</label>
+                    <input id="txAmountInput" type="number" step="any" min="0.01" placeholder="0" required
+                      class="glass-input w-full rounded-xl px-3 py-2.5 text-sm font-semibold" />
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label for="txDateInput" class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Date</label>
+                    <input id="txDateInput" type="date" required
+                      class="glass-input w-full rounded-xl px-3 py-2.5 text-sm" />
+                  </div>
+                  <div>
+                    <label for="txCategoryInput" class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Category</label>
+                    <select id="txCategoryInput" required class="glass-input w-full rounded-xl px-3 py-2.5 text-sm">
+                    </select>
+                  </div>
+                </div>
+
                 <div>
-                  <label for="txDateInput" class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Date</label>
-                  <input id="txDateInput" type="date" required
+                  <label for="txNoteInput" class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Note / Description (Optional)</label>
+                  <input id="txNoteInput" type="text" placeholder="e.g., Lunch, Mobile package, Salary..."
                     class="glass-input w-full rounded-xl px-3 py-2.5 text-sm" />
                 </div>
-                <div>
-                  <label for="txCategoryInput" class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Category</label>
-                  <select id="txCategoryInput" required class="glass-input w-full rounded-xl px-3 py-2.5 text-sm">
-                  </select>
+
+                <button id="txSubmitBtn" type="submit"
+                  class="w-full py-3 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-rose-600 to-pink-600 hover:opacity-95 shadow-lg shadow-rose-500/20 transition active:scale-[0.99]">
+                  Add Expense Entry
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 space-y-4">
+            <div class="glass-panel rounded-2xl p-4 sm:p-5">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <h3 class="text-base font-bold">Daily Transaction Log</h3>
+                <span id="txCountBadge" class="text-xs font-medium px-2.5 py-1 rounded-full bg-slate-500/10 text-slate-600 dark:text-slate-300">
+                  0 entries
+                </span>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                <select id="filterWalletSelect" aria-label="Filter by Wallet" class="glass-input rounded-xl px-3 py-2 text-xs font-medium">
+                  <option value="ALL">All Wallets</option>
+                  <option value="Cash">Cash</option>
+                  <option value="JazzCash">JazzCash</option>
+                  <option value="EasyPaisa">EasyPaisa</option>
+                  <option value="UBL">UBL</option>
+                </select>
+
+                <select id="filterTypeSelect" aria-label="Filter by Type" class="glass-input rounded-xl px-3 py-2 text-xs font-medium">
+                  <option value="ALL">All Types</option>
+                  <option value="income">Income Only</option>
+                  <option value="expense">Expense Only</option>
+                </select>
+
+                <div class="flex gap-1.5">
+                  <input id="filterDateInput" type="date" aria-label="Filter by Date" class="glass-input flex-1 rounded-xl px-3 py-2 text-xs" />
+                  <button id="clearDateFilterBtn" type="button" title="Show All Dates"
+                    class="glass-input px-2.5 rounded-xl text-xs font-medium text-slate-500 hover:text-slate-800 dark:hover:text-white">
+                    All
+                  </button>
                 </div>
               </div>
-
-              <!-- Note / Description -->
-              <div>
-                <label for="txNoteInput" class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Note / Description (Optional)</label>
-                <input id="txNoteInput" type="text" placeholder="e.g., Lunch, Mobile package, Salary..."
-                  class="glass-input w-full rounded-xl px-3 py-2.5 text-sm" />
-              </div>
-
-              <button id="txSubmitBtn" type="submit"
-                class="w-full py-3 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-rose-600 to-pink-600 hover:opacity-95 shadow-lg shadow-rose-500/20 transition active:scale-[0.99]">
-                Add Expense Entry
-              </button>
-            </form>
-          </div>
-        </div>
-
-        <!-- Right Column: Filterable Daily Transaction Log -->
-        <div class="lg:col-span-7 space-y-4">
-          <div class="glass-panel rounded-2xl p-4 sm:p-5">
-            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-              <h3 class="text-base font-bold">Daily Transaction Log</h3>
-              <span id="txCountBadge" class="text-xs font-medium px-2.5 py-1 rounded-full bg-slate-500/10 text-slate-600 dark:text-slate-300">
-                0 entries
-              </span>
             </div>
 
-            <!-- Quick Filter Bar -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-              <select id="filterWalletSelect" aria-label="Filter by Wallet" class="glass-input rounded-xl px-3 py-2 text-xs font-medium">
-                <option value="ALL">All Wallets</option>
-                <option value="Cash">Cash</option>
-                <option value="JazzCash">JazzCash</option>
-                <option value="EasyPaisa">EasyPaisa</option>
-                <option value="UBL">UBL</option>
-              </select>
-
-              <select id="filterTypeSelect" aria-label="Filter by Type" class="glass-input rounded-xl px-3 py-2 text-xs font-medium">
-                <option value="ALL">All Types</option>
-                <option value="income">Income Only</option>
-                <option value="expense">Expense Only</option>
-              </select>
-
-              <div class="flex gap-1.5">
-                <input id="filterDateInput" type="date" aria-label="Filter by Date" class="glass-input flex-1 rounded-xl px-3 py-2 text-xs" />
-                <button id="clearDateFilterBtn" type="button" title="Show All Dates"
-                  class="glass-input px-2.5 rounded-xl text-xs font-medium text-slate-500 hover:text-slate-800 dark:hover:text-white">
-                  All
-                </button>
-              </div>
-            </div>
+            <div id="transactionListContainer" class="space-y-2.5"></div>
           </div>
-
-          <!-- Transaction List Container -->
-          <div id="transactionListContainer" class="space-y-2.5"></div>
         </div>
       </div>
 
       <!-- =================================================================== -->
-      <!-- SUB-VIEW B: LOAN & CREDIT LEDGER (UDHAAR TRACKER)                   -->
+      <!-- SUB-VIEW B: SEPARATE LOAN GIVEN & CREDIT TAKEN LEDGER               -->
+      <!-- (Completely isolated from Main Wallets; supports partial returns)  -->
       <!-- =================================================================== -->
       <div id="udhaarSubView" class="hidden space-y-6">
+        <!-- Isolation Banner -->
+        <div class="glass-panel rounded-2xl px-4 py-3 border-l-4 border-l-sky-500 flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2.5 text-xs sm:text-sm">
+            <svg class="w-4 h-4 text-sky-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            <span class="font-medium text-slate-700 dark:text-slate-200">
+              Separate Ledger: Loan Given &amp; Credit Taken records are tracked independently and do <strong>not</strong> alter your Main Wallets balance.
+            </span>
+          </div>
+        </div>
+
         <!-- Udhaar Summary Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="glass-panel rounded-2xl p-4 sm:p-5 border-l-4 border-l-amber-500">
-            <div class="text-xs font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">
-              Active Loans Given (Receivable)
+            <div class="flex items-center justify-between">
+              <div class="text-xs font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">
+                Remaining Loan Given (Receivable)
+              </div>
+              <span class="text-[11px] font-medium px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-500">To Receive</span>
             </div>
-            <div id="totalLoansGivenDisplay" class="text-2xl font-bold mt-1">PKR 0</div>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Money others owe you</p>
+            <div id="totalLoansGivenDisplay" class="text-2xl sm:text-3xl font-bold mt-1.5">PKR 0</div>
+            <p id="totalLoansGivenSub" class="text-xs text-slate-500 dark:text-slate-400 mt-1">Total Given: PKR 0 • Returned: PKR 0</p>
           </div>
+
           <div class="glass-panel rounded-2xl p-4 sm:p-5 border-l-4 border-l-purple-500">
-            <div class="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400">
-              Active Credit Taken (Payable)
+            <div class="flex items-center justify-between">
+              <div class="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400">
+                Remaining Credit Taken (Payable)
+              </div>
+              <span class="text-[11px] font-medium px-2 py-0.5 rounded-full bg-purple-500/15 text-purple-400">To Pay</span>
             </div>
-            <div id="totalCreditTakenDisplay" class="text-2xl font-bold mt-1">PKR 0</div>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Money you owe to others</p>
+            <div id="totalCreditTakenDisplay" class="text-2xl sm:text-3xl font-bold mt-1.5">PKR 0</div>
+            <p id="totalCreditTakenSub" class="text-xs text-slate-500 dark:text-slate-400 mt-1">Total Taken: PKR 0 • Returned: PKR 0</p>
           </div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          <!-- Log Loan / Credit Form -->
+          <!-- Log New Loan Given / Credit Taken Form -->
           <div class="lg:col-span-5">
-            <div class="glass-panel rounded-2xl p-5 sm:p-6">
-              <h3 class="text-base font-bold mb-4">Record Loan or Credit</h3>
+            <div class="glass-panel rounded-2xl p-5 sm:p-6 sticky top-6">
+              <h3 class="text-base font-bold mb-4">New Loan Given / Credit Taken</h3>
               <form id="udhaarForm" class="space-y-4">
-                <!-- Loan Given vs Credit Taken -->
                 <div class="grid grid-cols-2 gap-1.5 p-1 glass-input rounded-xl">
                   <button type="button" id="udhaarTypeGivenBtn"
                     class="py-2 rounded-lg text-xs font-semibold transition bg-amber-600 text-white shadow-sm">
@@ -529,19 +524,19 @@
                 <input type="hidden" id="udhaarTypeInput" value="given" />
 
                 <div>
-                  <label for="udhaarPersonInput" class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Person's Name</label>
-                  <input id="udhaarPersonInput" type="text" placeholder="e.g., Ali Raza, Bilal..." required
+                  <label for="udhaarPersonInput" class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Person / Party Name</label>
+                  <input id="udhaarPersonInput" type="text" placeholder="e.g., Ali Raza, Bilal, Shopkeeper..." required
                     class="glass-input w-full rounded-xl px-3 py-2.5 text-sm" />
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label for="udhaarAmountInput" class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Amount (PKR)</label>
-                    <input id="udhaarAmountInput" type="number" step="any" min="0.01" placeholder="0" required
+                    <label for="udhaarAmountInput" class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Total Amount (PKR)</label>
+                    <input id="udhaarAmountInput" type="number" step="any" min="0.01" placeholder="e.g., 50000" required
                       class="glass-input w-full rounded-xl px-3 py-2.5 text-sm font-semibold" />
                   </div>
                   <div>
-                    <label for="udhaarWalletInput" class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Wallet Account</label>
+                    <label for="udhaarWalletInput" class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Account / Reference</label>
                     <select id="udhaarWalletInput" required class="glass-input w-full rounded-xl px-3 py-2.5 text-sm font-medium">
                       <option value="Cash">Cash</option>
                       <option value="JazzCash">JazzCash</option>
@@ -563,28 +558,43 @@
                 </div>
 
                 <p id="udhaarWalletHint" class="text-[11px] text-slate-500 dark:text-slate-400">
-                  * Deducts from selected wallet now; returns to wallet when marked Settled.
+                  * Stored separately from Main Wallets. Record partial or full returns anytime on the card.
                 </p>
 
-                <button type="submit"
+                <button id="udhaarSubmitBtn" type="submit"
                   class="w-full py-3 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-amber-600 to-orange-600 hover:opacity-95 shadow-lg shadow-amber-500/20 transition active:scale-[0.99]">
-                  Save Udhaar Record
+                  Save Loan Given Entry
                 </button>
               </form>
             </div>
           </div>
 
-          <!-- Udhaar Records List -->
-          <div class="lg:col-span-7 space-y-3">
-            <div class="glass-panel rounded-2xl p-4 flex flex-wrap items-center justify-between gap-2">
-              <h3 class="text-base font-bold">Loans &amp; Credits History</h3>
+          <!-- Separate Loan Given & Credit Taken List -->
+          <div class="lg:col-span-7 space-y-4">
+            <div class="glass-panel rounded-2xl p-4 flex flex-wrap items-center justify-between gap-2.5">
+              <div class="flex items-center gap-1.5">
+                <button type="button" data-udhaar-type-filter="ALL"
+                  class="udhaar-type-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-900 text-white dark:bg-white dark:text-slate-900 transition">
+                  All
+                </button>
+                <button type="button" data-udhaar-type-filter="given"
+                  class="udhaar-type-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold glass-input text-slate-600 dark:text-slate-300 transition">
+                  Loan Given
+                </button>
+                <button type="button" data-udhaar-type-filter="taken"
+                  class="udhaar-type-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold glass-input text-slate-600 dark:text-slate-300 transition">
+                  Credit Taken
+                </button>
+              </div>
+
               <select id="udhaarStatusFilter" class="glass-input rounded-xl px-3 py-1.5 text-xs font-medium">
-                <option value="ALL">All Records</option>
-                <option value="ACTIVE">Active (Unsettled)</option>
-                <option value="SETTLED">Settled Only</option>
+                <option value="ALL">All Status</option>
+                <option value="ACTIVE">Remaining Balance &gt; 0</option>
+                <option value="SETTLED">Completed (0 Remaining)</option>
               </select>
             </div>
-            <div id="udhaarListContainer" class="space-y-3"></div>
+
+            <div id="udhaarListContainer" class="space-y-3.5"></div>
           </div>
         </div>
       </div>
@@ -594,7 +604,6 @@
     <!-- TAB 2: IMPORTANT THINGS TO REMEMBER                                   -->
     <!-- ===================================================================== -->
     <section id="notesTab" class="hidden space-y-6">
-      <!-- Add / Edit Note Card -->
       <div class="glass-panel rounded-2xl p-5 sm:p-6">
         <div class="flex items-center justify-between mb-4">
           <h3 id="noteFormHeading" class="text-base font-bold">Add Important Note</h3>
@@ -645,7 +654,6 @@
         </form>
       </div>
 
-      <!-- Search & Priority Filter Bar -->
       <div class="glass-panel rounded-2xl p-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
         <div class="relative flex-1">
           <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -675,7 +683,6 @@
         </div>
       </div>
 
-      <!-- Responsive Notes Grid -->
       <div id="notesGridContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
     </section>
   </div>
@@ -683,7 +690,7 @@
   <!-- Custom Toast Notification Container -->
   <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-xs w-full pointer-events-none"></div>
 
-  <!-- Custom Confirmation Modal (Replaces native confirm/alert) -->
+  <!-- Custom Confirmation Modal -->
   <div id="confirmModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm">
     <div class="glass-panel rounded-2xl p-6 max-w-sm w-full shadow-2xl border border-white/20">
       <h4 id="confirmModalTitle" class="text-base font-bold mb-2">Confirm Action</h4>
@@ -703,7 +710,9 @@
     /**
      * =========================================================================
      * WA PERSONAL LEDGER — STANDALONE CLIENT-SIDE APPLICATION
-     * Storage Keys: Isolated under `wa_ledger_v1_*`
+     * Storage Keys:
+     *  - Main Wallets & Transactions: `wa_ledger_v1_transactions`
+     *  - Separate Loan & Credit Tab:  `wa_ledger_v1_udhaar` (isolated from Main Wallets)
      * =========================================================================
      */
     (function () {
@@ -725,7 +734,6 @@
         expense: ['Food & Dining', 'Groceries', 'Bills & Utilities', 'Mobile & Internet', 'Transport & Fuel', 'Shopping', 'Health', 'Other Expense'],
       };
 
-      // Application State
       let state = {
         title: 'Personal Ledger',
         theme: 'dark',
@@ -735,6 +743,7 @@
         notes: [],
         activeMainTab: 'finance',
         activeSubTab: 'transactions',
+        udhaarTypeFilter: 'ALL',
         notePriorityFilter: 'ALL',
       };
 
@@ -814,6 +823,33 @@
         };
       }
 
+      // Normalize legacy or new Udhaar item with partial repayments array
+      function normalizeUdhaarItem(item) {
+        const totalAmount = Number(item.amount) || 0;
+        let repayments = Array.isArray(item.repayments) ? item.repayments : [];
+        // Migrate legacy settled boolean if repayments array was empty
+        if (repayments.length === 0 && item.settled && totalAmount > 0) {
+          repayments = [
+            {
+              id: generateId(),
+              amount: totalAmount,
+              date: item.date || getTodayISO(),
+              note: 'Full settlement',
+            },
+          ];
+        }
+        const totalReturned = repayments.reduce((sum, r) => sum + (Number(r.amount) || 0), 0);
+        const remaining = Math.max(0, totalAmount - totalReturned);
+        return {
+          ...item,
+          amount: totalAmount,
+          repayments,
+          totalReturned,
+          remaining,
+          settled: remaining <= 0.0001,
+        };
+      }
+
       // -----------------------------------------------------------------------
       // LocalStorage Persistence
       // -----------------------------------------------------------------------
@@ -839,7 +875,10 @@
           }
 
           const savedUdhaar = localStorage.getItem(STORAGE_KEYS.UDHAAR);
-          if (savedUdhaar) state.udhaar = JSON.parse(savedUdhaar);
+          if (savedUdhaar) {
+            const parsedUdhaar = JSON.parse(savedUdhaar);
+            state.udhaar = Array.isArray(parsedUdhaar) ? parsedUdhaar.map(normalizeUdhaarItem) : [];
+          }
 
           const savedNotes = localStorage.getItem(STORAGE_KEYS.NOTES);
           if (savedNotes) state.notes = JSON.parse(savedNotes);
@@ -908,7 +947,7 @@
         document.getElementById('exportBtn').addEventListener('click', () => {
           const payload = {
             app: 'WA Personal Ledger',
-            version: 1,
+            version: 2,
             exportedAt: new Date().toISOString(),
             data: {
               title: state.title,
@@ -952,7 +991,7 @@
               state.title = data.title || 'Personal Ledger';
               state.transactions = data.transactions || [];
               state.categories = data.categories || JSON.parse(JSON.stringify(DEFAULT_CATEGORIES));
-              state.udhaar = Array.isArray(data.udhaar) ? data.udhaar : [];
+              state.udhaar = Array.isArray(data.udhaar) ? data.udhaar.map(normalizeUdhaarItem) : [];
               state.notes = data.notes || [];
 
               localStorage.setItem(STORAGE_KEYS.TITLE, state.title);
@@ -975,9 +1014,9 @@
       }
 
       // -----------------------------------------------------------------------
-      // Wallet Balance Computation
+      // Main Wallets Balance Computation (Strictly Separate from Udhaar)
       // -----------------------------------------------------------------------
-      function calculateBalances() {
+      function calculateMainBalances() {
         const balances = {
           Cash: 0,
           JazzCash: 0,
@@ -987,36 +1026,14 @@
         let totalIncome = 0;
         let totalExpense = 0;
 
-        // 1. Income & Expenses
         for (const tx of state.transactions) {
           const amt = Number(tx.amount) || 0;
           if (tx.type === 'income') {
             totalIncome += amt;
-            if (balances.hasOwnProperty(tx.wallet)) balances[tx.wallet] += amt;
+            if (Object.prototype.hasOwnProperty.call(balances, tx.wallet)) balances[tx.wallet] += amt;
           } else {
             totalExpense += amt;
-            if (balances.hasOwnProperty(tx.wallet)) balances[tx.wallet] -= amt;
-          }
-        }
-
-        // 2. Udhaar (Loans Given & Credit Taken)
-        let activeLoansGiven = 0;
-        let activeCreditTaken = 0;
-
-        for (const item of state.udhaar) {
-          const amt = Number(item.amount) || 0;
-          if (item.type === 'given') {
-            // Loan Given: When unsettled, cash left the wallet. When settled, cash returned.
-            if (!item.settled) {
-              activeLoansGiven += amt;
-              if (balances.hasOwnProperty(item.wallet)) balances[item.wallet] -= amt;
-            }
-          } else if (item.type === 'taken') {
-            // Credit Taken: When unsettled, cash entered the wallet. When settled, cash was repaid.
-            if (!item.settled) {
-              activeCreditTaken += amt;
-              if (balances.hasOwnProperty(item.wallet)) balances[item.wallet] += amt;
-            }
+            if (Object.prototype.hasOwnProperty.call(balances, tx.wallet)) balances[tx.wallet] -= amt;
           }
         }
 
@@ -1026,20 +1043,44 @@
           netBalance,
           totalIncome,
           totalExpense,
-          activeLoansGiven,
-          activeCreditTaken,
+        };
+      }
+
+      // Separate Udhaar Totals Computation
+      function calculateUdhaarSummary() {
+        let givenPrincipal = 0;
+        let givenReturned = 0;
+        let givenRemaining = 0;
+
+        let takenPrincipal = 0;
+        let takenReturned = 0;
+        let takenRemaining = 0;
+
+        for (const raw of state.udhaar) {
+          const item = normalizeUdhaarItem(raw);
+          if (item.type === 'given') {
+            givenPrincipal += item.amount;
+            givenReturned += item.totalReturned;
+            givenRemaining += item.remaining;
+          } else if (item.type === 'taken') {
+            takenPrincipal += item.amount;
+            takenReturned += item.totalReturned;
+            takenRemaining += item.remaining;
+          }
+        }
+
+        return {
+          givenPrincipal,
+          givenReturned,
+          givenRemaining,
+          takenPrincipal,
+          takenReturned,
+          takenRemaining,
         };
       }
 
       function renderBalances() {
-        const {
-          balances,
-          netBalance,
-          totalIncome,
-          totalExpense,
-          activeLoansGiven,
-          activeCreditTaken,
-        } = calculateBalances();
+        const { balances, netBalance, totalIncome, totalExpense } = calculateMainBalances();
 
         document.getElementById('netBalanceDisplay').textContent = formatPKR(netBalance);
         document.getElementById('totalIncomeDisplay').textContent = formatPKR(totalIncome);
@@ -1057,8 +1098,15 @@
           }
         });
 
-        document.getElementById('totalLoansGivenDisplay').textContent = formatPKR(activeLoansGiven);
-        document.getElementById('totalCreditTakenDisplay').textContent = formatPKR(activeCreditTaken);
+        // Separate Udhaar Summary
+        const udhaar = calculateUdhaarSummary();
+        document.getElementById('totalLoansGivenDisplay').textContent = formatPKR(udhaar.givenRemaining);
+        document.getElementById('totalLoansGivenSub').textContent =
+          `Total Given: ${formatPKR(udhaar.givenPrincipal)} • Returned: ${formatPKR(udhaar.givenReturned)}`;
+
+        document.getElementById('totalCreditTakenDisplay').textContent = formatPKR(udhaar.takenRemaining);
+        document.getElementById('totalCreditTakenSub').textContent =
+          `Total Taken: ${formatPKR(udhaar.takenPrincipal)} • Returned: ${formatPKR(udhaar.takenReturned)}`;
       }
 
       // -----------------------------------------------------------------------
@@ -1100,7 +1148,6 @@
           )
           .join('');
 
-        // Bind delete events
         document.querySelectorAll('.delete-cat-btn').forEach((btn) => {
           btn.addEventListener('click', () => {
             const type = btn.getAttribute('data-cat-type');
@@ -1159,7 +1206,7 @@
       }
 
       // -----------------------------------------------------------------------
-      // Income & Expense Transactions
+      // Income & Expense Transactions (Main Wallets)
       // -----------------------------------------------------------------------
       function setTransactionFormType(type) {
         document.getElementById('txTypeInput').value = type;
@@ -1304,7 +1351,6 @@
           showToast(`${type === 'income' ? 'Income' : 'Expense'} added to ${wallet}!`, 'success');
         });
 
-        // Filters
         document.getElementById('filterWalletSelect').addEventListener('change', renderTransactions);
         document.getElementById('filterTypeSelect').addEventListener('change', renderTransactions);
         document.getElementById('filterDateInput').addEventListener('change', renderTransactions);
@@ -1315,31 +1361,37 @@
       }
 
       // -----------------------------------------------------------------------
-      // Loan & Credit (Udhaar) Management
+      // Separate Loan Given & Credit Taken (With Partial Returns Deduction)
       // -----------------------------------------------------------------------
       function setUdhaarFormType(type) {
         document.getElementById('udhaarTypeInput').value = type;
         const givenBtn = document.getElementById('udhaarTypeGivenBtn');
         const takenBtn = document.getElementById('udhaarTypeTakenBtn');
-        const hint = document.getElementById('udhaarWalletHint');
+        const submitBtn = document.getElementById('udhaarSubmitBtn');
 
         if (type === 'given') {
           givenBtn.className = 'py-2 rounded-lg text-xs font-semibold transition bg-amber-600 text-white shadow-sm';
           takenBtn.className = 'py-2 rounded-lg text-xs font-semibold transition text-slate-600 dark:text-slate-300';
-          hint.textContent = '* Deducts from selected wallet now; returns to wallet when marked Settled.';
+          submitBtn.textContent = 'Save Loan Given Entry';
+          submitBtn.className = 'w-full py-3 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-amber-600 to-orange-600 hover:opacity-95 shadow-lg shadow-amber-500/20 transition active:scale-[0.99]';
         } else {
           takenBtn.className = 'py-2 rounded-lg text-xs font-semibold transition bg-purple-600 text-white shadow-sm';
           givenBtn.className = 'py-2 rounded-lg text-xs font-semibold transition text-slate-600 dark:text-slate-300';
-          hint.textContent = '* Adds to selected wallet now; deducts from wallet when marked Settled.';
+          submitBtn.textContent = 'Save Credit Taken Entry';
+          submitBtn.className = 'w-full py-3 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:opacity-95 shadow-lg shadow-purple-500/20 transition active:scale-[0.99]';
         }
       }
 
       function renderUdhaar() {
-        const filter = document.getElementById('udhaarStatusFilter').value;
+        const statusFilter = document.getElementById('udhaarStatusFilter').value;
+        const typeFilter = state.udhaarTypeFilter;
+
         const filtered = state.udhaar
+          .map(normalizeUdhaarItem)
           .filter((item) => {
-            if (filter === 'ACTIVE') return !item.settled;
-            if (filter === 'SETTLED') return item.settled;
+            if (typeFilter !== 'ALL' && item.type !== typeFilter) return false;
+            if (statusFilter === 'ACTIVE' && item.remaining <= 0) return false;
+            if (statusFilter === 'SETTLED' && item.remaining > 0) return false;
             return true;
           })
           .sort((a, b) => Number(a.settled) - Number(b.settled) || b.createdAt - a.createdAt);
@@ -1348,8 +1400,8 @@
         if (filtered.length === 0) {
           container.innerHTML = `
             <div class="glass-panel rounded-2xl p-8 text-center">
-              <p class="text-sm font-medium text-slate-500 dark:text-slate-400">No loan or credit entries found.</p>
-              <p class="text-xs text-slate-400 dark:text-slate-500 mt-1">Track money lent or borrowed using the form.</p>
+              <p class="text-sm font-medium text-slate-500 dark:text-slate-400">No Loan Given or Credit Taken entries found.</p>
+              <p class="text-xs text-slate-400 dark:text-slate-500 mt-1">Add a record on the left, then deduct partial returns as you pay or receive back.</p>
             </div>`;
           return;
         }
@@ -1361,69 +1413,204 @@
               ? 'bg-amber-500/15 text-amber-600 dark:text-amber-400'
               : 'bg-purple-500/15 text-purple-600 dark:text-purple-400';
             const label = isGiven ? 'Loan Given' : 'Credit Taken';
+            const progressPct = item.amount > 0 ? Math.min(100, Math.round((item.totalReturned / item.amount) * 100)) : 100;
+            const barColor = isGiven ? 'bg-amber-500' : 'bg-purple-500';
+
+            const repaymentsHTML =
+              item.repayments.length > 0
+                ? `
+                <div class="mt-3 pt-2.5 border-t border-slate-500/10 space-y-1.5">
+                  <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+                    Return / Installment History (${item.repayments.length})
+                  </div>
+                  ${item.repayments
+                    .map(
+                      (rep) => `
+                    <div class="flex items-center justify-between text-xs bg-slate-500/5 dark:bg-slate-900/40 rounded-lg px-2.5 py-1.5">
+                      <div class="min-w-0 truncate">
+                        <span class="font-semibold text-emerald-600 dark:text-emerald-400">− ${formatPKR(rep.amount)}</span>
+                        <span class="text-slate-400 ml-1.5">on ${escapeHTML(rep.date)}</span>
+                        ${rep.note ? `<span class="text-slate-500 dark:text-slate-400 ml-1.5">(${escapeHTML(rep.note)})</span>` : ''}
+                      </div>
+                      <button type="button" data-udhaar-id="${item.id}" data-rep-id="${rep.id}" title="Undo this return entry"
+                        class="delete-repayment-btn text-slate-400 hover:text-rose-500 ml-2 shrink-0 text-[11px] font-semibold">
+                        Undo
+                      </button>
+                    </div>`
+                    )
+                    .join('')}
+                </div>`
+                : '';
+
+            const returnFormHTML =
+              item.remaining > 0
+                ? `
+                <form class="partial-return-form mt-3 pt-3 border-t border-slate-500/10 flex flex-wrap sm:flex-nowrap items-center gap-2" data-udhaar-id="${item.id}">
+                  <input type="number" step="any" min="0.01" max="${item.remaining}" placeholder="Return amount (max ${item.remaining})" required
+                    class="return-amount-input glass-input flex-1 min-w-[140px] rounded-xl px-3 py-1.5 text-xs font-semibold" />
+                  <input type="text" placeholder="Note (optional)"
+                    class="return-note-input glass-input w-full sm:w-36 rounded-xl px-3 py-1.5 text-xs" />
+                  <button type="submit"
+                    class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white shadow-sm shrink-0 transition active:scale-95">
+                    − Minus Return
+                  </button>
+                  <button type="button" data-udhaar-id="${item.id}"
+                    class="settle-full-btn px-2.5 py-1.5 rounded-xl text-xs font-semibold glass-input hover:bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 shrink-0 transition">
+                    Full
+                  </button>
+                </form>`
+                : '';
 
             return `
-              <div class="glass-panel rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${item.settled ? 'opacity-65' : ''}">
-                <div class="min-w-0 flex-1">
-                  <div class="flex flex-wrap items-center gap-2 mb-1">
-                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded-lg ${badgeStyle}">${label}</span>
-                    <span class="text-sm font-bold">${escapeHTML(item.person)}</span>
-                    <span class="text-xs px-2 py-0.5 rounded-md bg-slate-500/10 text-slate-600 dark:text-slate-300">${escapeHTML(item.wallet)}</span>
-                    ${item.settled ? '<span class="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-500">Settled</span>' : ''}
+              <div class="glass-panel rounded-2xl p-4 sm:p-5 ${item.settled ? 'opacity-75' : ''}">
+                <!-- Card Header -->
+                <div class="flex items-start justify-between gap-3">
+                  <div class="min-w-0 flex-1">
+                    <div class="flex flex-wrap items-center gap-2 mb-1">
+                      <span class="text-xs font-semibold px-2.5 py-0.5 rounded-lg ${badgeStyle}">${label}</span>
+                      <span class="text-base font-bold">${escapeHTML(item.person)}</span>
+                      <span class="text-xs px-2 py-0.5 rounded-md bg-slate-500/10 text-slate-600 dark:text-slate-300">${escapeHTML(item.wallet)}</span>
+                      ${
+                        item.settled
+                          ? '<span class="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-500">Cleared (0 Left)</span>'
+                          : ''
+                      }
+                    </div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400">
+                      <span>Date: ${escapeHTML(item.date)}</span>
+                      ${item.note ? ` • <span>${escapeHTML(item.note)}</span>` : ''}
+                    </div>
                   </div>
-                  <div class="text-xs text-slate-500 dark:text-slate-400">
-                    <span>${escapeHTML(item.date)}</span>
-                    ${item.note ? ` • <span>${escapeHTML(item.note)}</span>` : ''}
-                  </div>
-                </div>
 
-                <div class="flex items-center justify-between sm:justify-end gap-2.5 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-slate-500/10">
-                  <span class="text-base font-bold ${isGiven ? 'text-amber-500' : 'text-purple-400'}">
-                    ${formatPKR(item.amount)}
-                  </span>
-
-                  <button type="button" data-udhaar-id="${item.id}"
-                    class="toggle-udhaar-btn px-3 py-1.5 rounded-xl text-xs font-semibold transition ${
-                      item.settled
-                        ? 'glass-input text-slate-500 hover:text-slate-800 dark:hover:text-white'
-                        : 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-sm'
-                    }">
-                    ${item.settled ? 'Reopen' : 'Mark Settled'}
-                  </button>
-
-                  <button type="button" data-udhaar-id="${item.id}" title="Delete record"
-                    class="delete-udhaar-btn p-1.5 rounded-lg text-slate-400 hover:text-rose-500 hover:bg-rose-500/10 transition">
+                  <button type="button" data-udhaar-id="${item.id}" title="Delete entire record"
+                    class="delete-udhaar-btn p-1.5 rounded-lg text-slate-400 hover:text-rose-500 hover:bg-rose-500/10 transition shrink-0">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                     </svg>
                   </button>
                 </div>
+
+                <!-- Original vs Returned vs Remaining Breakdown -->
+                <div class="grid grid-cols-3 gap-2 mt-3.5 p-2.5 rounded-xl bg-slate-500/5 dark:bg-slate-900/45 border border-slate-500/10 text-center sm:text-left">
+                  <div>
+                    <div class="text-[10px] uppercase tracking-wider text-slate-400">${isGiven ? 'Total Given' : 'Total Taken'}</div>
+                    <div class="text-xs sm:text-sm font-bold mt-0.5">${formatPKR(item.amount)}</div>
+                  </div>
+                  <div>
+                    <div class="text-[10px] uppercase tracking-wider text-emerald-500">Returned (−)</div>
+                    <div class="text-xs sm:text-sm font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">${formatPKR(item.totalReturned)}</div>
+                  </div>
+                  <div>
+                    <div class="text-[10px] uppercase tracking-wider ${isGiven ? 'text-amber-500' : 'text-purple-400'}">Remaining</div>
+                    <div class="text-xs sm:text-sm font-bold ${isGiven ? 'text-amber-500' : 'text-purple-400'} mt-0.5">${formatPKR(item.remaining)}</div>
+                  </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="mt-2.5">
+                  <div class="flex justify-between text-[10px] text-slate-400 mb-1">
+                    <span>Repayment Progress</span>
+                    <span>${progressPct}%</span>
+                  </div>
+                  <div class="w-full h-1.5 rounded-full bg-slate-500/15 overflow-hidden">
+                    <div class="h-full ${barColor} rounded-full transition-all duration-300" style="width: ${progressPct}%"></div>
+                  </div>
+                </div>
+
+                ${returnFormHTML}
+                ${repaymentsHTML}
               </div>`;
           })
           .join('');
 
-        document.querySelectorAll('.toggle-udhaar-btn').forEach((btn) => {
-          btn.addEventListener('click', () => {
-            const id = btn.getAttribute('data-udhaar-id');
-            const record = state.udhaar.find((u) => u.id === id);
-            if (!record) return;
-            record.settled = !record.settled;
+        // Bind Partial Return Forms (e.g. 50,000 - 6,000 = 44,000 remaining)
+        document.querySelectorAll('.partial-return-form').forEach((form) => {
+          form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const id = form.getAttribute('data-udhaar-id');
+            const idx = state.udhaar.findIndex((u) => u.id === id);
+            if (idx === -1) return;
+
+            const record = normalizeUdhaarItem(state.udhaar[idx]);
+            const amtInput = form.querySelector('.return-amount-input');
+            const noteInput = form.querySelector('.return-note-input');
+            const returnAmt = parseFloat(amtInput.value);
+
+            if (!returnAmt || returnAmt <= 0) {
+              showToast('Enter a valid return amount.', 'error');
+              return;
+            }
+            if (returnAmt > record.remaining + 0.001) {
+              showToast(`Amount exceeds remaining ${formatPKR(record.remaining)}.`, 'error');
+              return;
+            }
+
+            record.repayments.push({
+              id: generateId(),
+              amount: returnAmt,
+              date: getTodayISO(),
+              note: noteInput.value.trim(),
+            });
+
+            state.udhaar[idx] = normalizeUdhaarItem(record);
             saveUdhaar();
             renderBalances();
             renderUdhaar();
             showToast(
-              record.settled
-                ? `Marked settled — ${record.wallet} balance updated!`
-                : `Reopened record — ${record.wallet} balance adjusted.`,
+              `Deducted ${formatPKR(returnAmt)} — Remaining: ${formatPKR(state.udhaar[idx].remaining)}`,
               'success'
             );
           });
         });
 
+        // Bind Full Settle Button
+        document.querySelectorAll('.settle-full-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-udhaar-id');
+            const idx = state.udhaar.findIndex((u) => u.id === id);
+            if (idx === -1) return;
+
+            const record = normalizeUdhaarItem(state.udhaar[idx]);
+            if (record.remaining <= 0) return;
+
+            record.repayments.push({
+              id: generateId(),
+              amount: record.remaining,
+              date: getTodayISO(),
+              note: 'Full remaining balance cleared',
+            });
+
+            state.udhaar[idx] = normalizeUdhaarItem(record);
+            saveUdhaar();
+            renderBalances();
+            renderUdhaar();
+            showToast('Full balance cleared (PKR 0 remaining)!', 'success');
+          });
+        });
+
+        // Bind Undo Individual Return Entry
+        document.querySelectorAll('.delete-repayment-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-udhaar-id');
+            const repId = btn.getAttribute('data-rep-id');
+            const idx = state.udhaar.findIndex((u) => u.id === id);
+            if (idx === -1) return;
+
+            const record = normalizeUdhaarItem(state.udhaar[idx]);
+            record.repayments = record.repayments.filter((r) => r.id !== repId);
+            state.udhaar[idx] = normalizeUdhaarItem(record);
+            saveUdhaar();
+            renderBalances();
+            renderUdhaar();
+            showToast('Return entry undone; remaining balance restored.', 'info');
+          });
+        });
+
+        // Bind Delete Entire Loan/Credit Record
         document.querySelectorAll('.delete-udhaar-btn').forEach((btn) => {
           btn.addEventListener('click', () => {
             const id = btn.getAttribute('data-udhaar-id');
-            showConfirmModal('Delete Udhaar Record', 'Are you sure you want to delete this loan/credit record?', () => {
+            showConfirmModal('Delete Record', 'Permanently delete this Loan / Credit entry and its return history?', () => {
               state.udhaar = state.udhaar.filter((u) => u.id !== id);
               saveUdhaar();
               renderBalances();
@@ -1440,6 +1627,17 @@
         document.getElementById('udhaarTypeTakenBtn').addEventListener('click', () => setUdhaarFormType('taken'));
         document.getElementById('udhaarStatusFilter').addEventListener('change', renderUdhaar);
 
+        document.querySelectorAll('.udhaar-type-filter-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            state.udhaarTypeFilter = btn.getAttribute('data-udhaar-type-filter');
+            document.querySelectorAll('.udhaar-type-filter-btn').forEach((b) => {
+              b.className = 'udhaar-type-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold glass-input text-slate-600 dark:text-slate-300 transition';
+            });
+            btn.className = 'udhaar-type-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-900 text-white dark:bg-white dark:text-slate-900 transition';
+            renderUdhaar();
+          });
+        });
+
         document.getElementById('udhaarForm').addEventListener('submit', (e) => {
           e.preventDefault();
           const type = document.getElementById('udhaarTypeInput').value;
@@ -1454,17 +1652,20 @@
             return;
           }
 
-          state.udhaar.push({
-            id: generateId(),
-            type,
-            person,
-            amount,
-            wallet,
-            date,
-            note,
-            settled: false,
-            createdAt: Date.now(),
-          });
+          state.udhaar.push(
+            normalizeUdhaarItem({
+              id: generateId(),
+              type,
+              person,
+              amount,
+              wallet,
+              date,
+              note,
+              repayments: [],
+              settled: false,
+              createdAt: Date.now(),
+            })
+          );
 
           saveUdhaar();
           renderBalances();
@@ -1473,7 +1674,10 @@
           document.getElementById('udhaarPersonInput').value = '';
           document.getElementById('udhaarAmountInput').value = '';
           document.getElementById('udhaarNoteInput').value = '';
-          showToast('Udhaar record saved!', 'success');
+          showToast(
+            type === 'given' ? 'Loan Given saved in separate ledger!' : 'Credit Taken saved in separate ledger!',
+            'success'
+          );
         });
       }
 
@@ -1556,7 +1760,6 @@
                       ${escapeHTML(note.priority)}
                     </span>
                     <div class="flex items-center gap-1">
-                      <!-- Pin Toggle -->
                       <button type="button" data-note-id="${note.id}" title="${note.pinned ? 'Unpin note' : 'Pin to top'}"
                         class="pin-note-btn p-1.5 rounded-lg transition ${
                           note.pinned
@@ -1568,7 +1771,6 @@
                         </svg>
                       </button>
 
-                      <!-- Copy Content -->
                       <button type="button" data-note-id="${note.id}" title="Copy content"
                         class="copy-note-btn p-1.5 rounded-lg text-slate-400 hover:text-emerald-500 hover:bg-emerald-500/10 transition">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -1576,7 +1778,6 @@
                         </svg>
                       </button>
 
-                      <!-- Edit Note -->
                       <button type="button" data-note-id="${note.id}" title="Edit note"
                         class="edit-note-btn p-1.5 rounded-lg text-slate-400 hover:text-amber-500 hover:bg-amber-500/10 transition">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -1584,7 +1785,6 @@
                         </svg>
                       </button>
 
-                      <!-- Delete Note -->
                       <button type="button" data-note-id="${note.id}" title="Delete note"
                         class="delete-note-btn p-1.5 rounded-lg text-slate-400 hover:text-rose-500 hover:bg-rose-500/10 transition">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -1606,7 +1806,6 @@
           })
           .join('');
 
-        // Bind Note Card Actions
         document.querySelectorAll('.pin-note-btn').forEach((btn) => {
           btn.addEventListener('click', () => {
             const id = btn.getAttribute('data-note-id');
@@ -1741,14 +1940,13 @@
           financeTab.classList.add('hidden');
         });
 
-        // Finance Sub-tabs
         const subTxBtn = document.getElementById('subTabTransactionsBtn');
         const subUdhaarBtn = document.getElementById('subTabUdhaarBtn');
         const txView = document.getElementById('transactionsSubView');
         const udhaarView = document.getElementById('udhaarSubView');
 
         const activeSubClass = 'px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-sm';
-        const inactiveSubClass = 'px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition text-slate-600 dark:text-slate-300 hover:bg-white/40 dark:hover:bg-slate-800/50';
+        const inactiveSubClass = 'px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition text-slate-600 dark:text-slate-300 hover:bg-white/40 dark:hover:bg-slate-800/50 flex items-center gap-1.5';
 
         subTxBtn.addEventListener('click', () => {
           subTxBtn.className = activeSubClass;
